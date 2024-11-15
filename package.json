@@ -1,0 +1,48 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "format": "prettier --write \"{components,pages,plugins,middleware,layouts,composables,assets}/**/*.{js,jsx,ts,tsx,vue,html,css,scss,json,md}\"",
+    "postinstall": "nuxt prepare",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@clerk/backend": "^1.16.4",
+    "@clerk/themes": "^2.1.45",
+    "@nuxt/fonts": "^0.10.2",
+    "@nuxt/icon": "^1.7.5",
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@primevue/nuxt-module": "^4.2.2",
+    "@primevue/themes": "^4.2.2",
+    "nuxt": "^3.14.159",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.2.2",
+    "tailwindcss-primeui": "^0.3.4",
+    "vue": "latest",
+    "vue-clerk": "^0.8.5",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@nuxt/eslint": "^0.5.7",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.31.0",
+    "globals": "^15.12.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.14.0",
+    "vue-tsc": "^2.1.10"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
+}
