@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxt/fonts",
     "vue-clerk/nuxt",
+    "@vueuse/nuxt",
   ],
 
   typescript: {
