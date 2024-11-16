@@ -2,8 +2,9 @@
   <div class="w-full">
     <header
       :class="[
-        'flex h-20 items-center justify-between px-5 py-3',
-        route.path.includes('/dashboard')
+        'flex h-20 items-center justify-between px-5',
+        route.path.includes('/dashboard') ||
+        route.path.includes('/generations/new')
           ? 'border-b border-b-slate-300 bg-slate-200'
           : '',
       ]"
@@ -14,8 +15,13 @@
       >
         <Icon name="mdi:heart-multiple" size="32" class="text-red-500" />
         <span
-          v-if="!route.path.includes('/dashboard')"
-          class="text-3xl font-bold leading-none text-white"
+          :class="[
+            'text-3xl font-bold leading-none',
+            route.path.includes('/dashboard') ||
+            route.path.includes('/generations/new')
+              ? 'text-black'
+              : 'text-white',
+          ]"
           >LoveSpot</span
         >
       </div>

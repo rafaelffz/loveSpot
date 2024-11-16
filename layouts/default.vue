@@ -7,7 +7,7 @@
       @login="router.push('/sign-in')"
       @register="router.push('/sign-up')"
       @my-generations="router.push(`/dashboard/${user?.username}`)"
-      @new="router.push('/generations/new')"
+      @new="router.push(`/${user?.username}/generations/new`)"
     />
     <slot />
   </div>

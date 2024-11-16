@@ -7,14 +7,10 @@
         >
       </template>
 
-      <template #subtitle>
-        <span class="text-2xl font-semibold leading-none" v-if="user?.firstName"
+      <template #footer>
+        <span class="text-2xl font-semibold leading-none text-slate-500" v-if="user?.firstName"
           >Os sites que você gerar irão aparecer nesta tela.</span
         >
-      </template>
-
-      <template #footer>
-        <span>Você pode gerar um novo pelo botão no topo da página.</span>
       </template>
     </Card>
 
@@ -34,7 +30,7 @@
         </template>
 
         <template #footer>
-          <span class="text-xl font-semibold leading-none">
+          <span class="text-xl font-semibold leading-none text-slate-500">
             Você pode gerar um novo pelo botão no topo da página.
           </span>
         </template>

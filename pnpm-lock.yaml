@@ -23,6 +23,9 @@ importers:
       '@nuxtjs/tailwindcss':
         specifier: ^6.12.2
         version: 6.12.2(magicast@0.3.5)(rollup@4.26.0)
+      '@primevue/forms':
+        specifier: ^4.2.2
+        version: 4.2.2(vue@3.5.12(typescript@5.6.3))
       '@primevue/nuxt-module':
         specifier: ^4.2.2
         version: 4.2.2(@babel/parser@7.26.2)(magicast@0.3.5)(rollup@4.26.0)(vue@3.5.12(typescript@5.6.3))
@@ -50,6 +53,9 @@ importers:
       vue-router:
         specifier: latest
         version: 4.4.5(vue@3.5.12(typescript@5.6.3))
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@eslint/js':
         specifier: ^9.15.0
@@ -920,6 +926,10 @@ packages:
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
 
+  '@primeuix/forms@0.0.2':
+    resolution: {integrity: sha512-DpecPQd/Qf/kav4LKCaIeGuT3AkwhJzuHCkLANTVlN/zBvo8KIj3OZHsCkm0zlIMVVnaJdtx1ULNlRQdudef+A==}
+    engines: {node: '>=12.11.0'}
+
   '@primeuix/styled@0.3.1':
     resolution: {integrity: sha512-MIPtektNrFwEKJU0qXrguoultADtxMC39ghwXIGP3DR3zsB7vWk6VhJ1Mo7TxgWsVi3kHnh6g5v9X50eMFcBHw==}
     engines: {node: '>=12.11.0'}
@@ -937,6 +947,10 @@ packages:
     engines: {node: '>=12.11.0'}
     peerDependencies:
       vue: ^3.3.0
+
+  '@primevue/forms@4.2.2':
+    resolution: {integrity: sha512-uCMi5tf5JgxnIM0ECQXn0nlxOmYEQSV6lsMWuuDifyk6u+d1MgZmzZMUbcpVlNczGuXFc86YMk1iOdzk3JjY/A==}
+    engines: {node: '>=12.11.0'}
 
   '@primevue/icons@4.2.2':
     resolution: {integrity: sha512-x0AwfjB94MoLsmNyQtSGgrEWhZ52SzRQ3X5hEUA30L7tdob66qYmiMKCnjfq2gvJIB477DwB7cxJZhaTxspsDw==}
@@ -4537,6 +4551,9 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -5575,6 +5592,10 @@ snapshots:
 
   '@polka/url@1.0.0-next.28': {}
 
+  '@primeuix/forms@0.0.2':
+    dependencies:
+      '@primeuix/utils': 0.3.1
+
   '@primeuix/styled@0.3.1':
     dependencies:
       '@primeuix/utils': 0.3.1
@@ -5590,6 +5611,14 @@ snapshots:
       '@primeuix/styled': 0.3.1
       '@primeuix/utils': 0.3.1
       vue: 3.5.12(typescript@5.6.3)
+
+  '@primevue/forms@4.2.2(vue@3.5.12(typescript@5.6.3))':
+    dependencies:
+      '@primeuix/forms': 0.0.2
+      '@primeuix/utils': 0.3.1
+      '@primevue/core': 4.2.2(vue@3.5.12(typescript@5.6.3))
+    transitivePeerDependencies:
+      - vue
 
   '@primevue/icons@4.2.2(vue@3.5.12(typescript@5.6.3))':
     dependencies:
@@ -9525,3 +9554,5 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.5.2
+
+  zod@3.23.8: {}

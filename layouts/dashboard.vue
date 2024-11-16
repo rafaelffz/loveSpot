@@ -4,12 +4,18 @@
       @home="router.push('/')"
       @login="router.push('/sign-in')"
       @register="router.push('/sign-up')"
-      @new="router.push('/generations/new')"
+      @my-generations="router.push(`/dashboard/${user?.username}`)"
+      @new="router.push(`/${user?.username}/generations/new`)"
     />
+    
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
+import { useUser } from "vue-clerk";
+
+const { user } = useUser();
+
 const router = useRouter();
 </script>

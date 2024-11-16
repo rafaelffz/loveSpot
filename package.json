@@ -18,6 +18,7 @@
     "@nuxt/fonts": "^0.10.2",
     "@nuxt/icon": "^1.7.5",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@primevue/forms": "^4.2.2",
     "@primevue/nuxt-module": "^4.2.2",
     "@primevue/themes": "^4.2.2",
     "nuxt": "^3.14.159",
@@ -26,7 +27,8 @@
     "tailwindcss-primeui": "^0.3.4",
     "vue": "latest",
     "vue-clerk": "^0.8.5",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
