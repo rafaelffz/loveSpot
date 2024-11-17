@@ -26,6 +26,11 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
+  runtimeConfig: {
+    tursoDBURL: process.env.TURSO_DATABASE_URL,
+    tursoAuthToken: process.env.TURSO_AUTH_TOKEN,
+  },
+
   primevue: {
     importTheme: { from: "./assets/css/preset.ts" },
     options: {

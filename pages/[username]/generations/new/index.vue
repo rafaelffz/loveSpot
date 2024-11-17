@@ -224,7 +224,7 @@ const onFormSubmit = ({ valid }: FormSubmitEvent) => {
 
     return {
       coupleName,
-      date: date.value?.toISOString(),
+      date: new Date(),
       message,
     };
   }
