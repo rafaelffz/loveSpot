@@ -13,14 +13,19 @@
         class="flex cursor-pointer items-center gap-2 font-Sans"
         @click="emit('home')"
       >
-        <Icon name="mdi:heart-multiple" size="32" class="text-red-500" />
+        <Icon
+          name="mdi:heart-multiple"
+          :size="isMobile ? 28 : 32"
+          class="text-red-500"
+        />
         <span
+          class="font-bold leading-none"
           :class="[
-            'text-3xl font-bold leading-none',
             route.path.includes('/dashboard') ||
             route.path.includes('/generations/new')
               ? 'text-black'
               : 'text-white',
+            isMobile ? 'text-xl' : 'text-3xl',
           ]"
           >LoveSpot</span
         >
@@ -33,10 +38,16 @@
             icon="pi pi-sign-in"
             severity="secondary"
             raised
+            :size="isMobile ? 'small' : undefined"
             @click="emit('login')"
           />
 
-          <Button label="Registre-se" raised @click="emit('register')" />
+          <Button
+            label="Registre-se"
+            raised
+            :size="isMobile ? 'small' : undefined"
+            @click="emit('register')"
+          />
         </div>
       </SignedOut>
 

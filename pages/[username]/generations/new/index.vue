@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex h-full w-full flex-col items-center px-5 font-Sans"
-  >
+  <div class="flex h-full w-full flex-col items-center px-5 font-Sans">
     <Toast />
 
     <Card class="mt-10 w-full max-w-4xl">
@@ -44,6 +42,7 @@
           <InputText
             name="coupleName"
             id="coupleName"
+            v-model="coupleName"
             type="text"
             placeholder="Ex: João e Maria"
           />
@@ -68,6 +67,7 @@
           <DatePicker
             name="date"
             id="date"
+            v-model="date"
             showIcon
             fluid
             iconDisplay="input"
@@ -123,6 +123,7 @@
         <Textarea
           id="message"
           type="text"
+          v-model="message"
           name="message"
           rows="7"
           class="resize-none"
@@ -141,14 +142,14 @@
         <span
           class="text-slate-700"
           :class="[isMobile ? 'text-sm' : 'text-base']"
-          >Clique aqui quando estiver tudo certo
+          >Clique aqui quando estiver pronto
           <Icon
             name="material-symbols:arrow-right-alt-rounded"
             :size="isMobile ? 18 : 24"
             class="align-bottom text-slate-800"
           />
         </span>
-        <Button type="submit" label="Gerar" raised />
+        <Button type="submit" :disabled="!enableButton" label="Gerar" raised />
       </div>
     </Form>
   </div>
@@ -175,6 +176,10 @@ interface FormData {
   date: Date | null;
   message: string;
 }
+
+const coupleName = ref("");
+const date = ref<Date | null>(null);
+const message = ref("");
 
 const initialValues = reactive({
   coupleName: "",
@@ -209,7 +214,7 @@ const resolver = zodResolver(
   }),
 );
 
-const onFormSubmit = ({ valid, values }: FormSubmitEvent) => {
+const onFormSubmit = ({ valid }: FormSubmitEvent) => {
   if (valid) {
     toast.add({
       severity: "success",
@@ -217,15 +222,15 @@ const onFormSubmit = ({ valid, values }: FormSubmitEvent) => {
       life: 3000,
     });
 
-    const { coupleName, date, message } = values as FormData;
-
-    const dateFormatted = date?.toISOString();
-
     return {
       coupleName,
-      date: dateFormatted,
+      date: date.value?.toISOString(),
       message,
     };
   }
 };
+
+const enableButton = computed(() => {
+  return coupleName.value && date.value && message.value;
+});
 </script>
