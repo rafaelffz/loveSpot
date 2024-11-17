@@ -2,12 +2,12 @@
   <div class="flex w-full flex-col items-center px-5 font-Sans">
     <Card class="mt-10 w-full max-w-4xl">
       <template #title>
-        <span class="text-3xl font-semibold leading-none" v-if="user?.firstName"
+        <span class="text-2xl font-semibold leading-none" v-if="user?.firstName"
           >Bem-vindo, {{ user?.firstName }}!</span
         >
       </template>
 
-      <template #footer>
+      <template #content>
         <span class="text-2xl font-semibold leading-none text-slate-500" v-if="user?.firstName"
           >Os sites que você gerar irão aparecer nesta tela.</span
         >

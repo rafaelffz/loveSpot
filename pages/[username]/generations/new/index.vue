@@ -18,6 +18,7 @@
     </Card>
 
     <Form
+      v-slot="$form"
       :resolver
       :initialValues
       @submit="onFormSubmit"
@@ -158,6 +159,12 @@ definePageMeta({
 
 const toast = useToast();
 
+interface FormData {
+  coupleName: string;
+  date: Date | null;
+  message: string;
+}
+
 const initialValues = reactive({
   coupleName: "",
   date: "",
@@ -167,34 +174,47 @@ const initialValues = reactive({
 const resolver = zodResolver(
   z.object({
     coupleName: z.string().min(1, { message: "Nome do casal é obrigatório." }),
-    date: z
-      .union([
+    date: z.preprocess(
+      (val) => {
+        if (!val || val === "" || val === null) {
+          return null;
+        }
+
+        if (val instanceof Date && !isNaN(val.getTime())) {
+          return val;
+        }
+
+        const date = new Date(val as string | number);
+        return !isNaN(date.getTime()) ? date : null;
+      },
+      z.union([
         z.date(),
-        z.string().transform((val) => {
-          const parsed = new Date(val);
-          if (isNaN(parsed.getTime())) {
-            throw new Error("Invalid date");
-          }
-          return parsed;
+        z.null().refine((val) => val !== null, {
+          message: "Data é obrigatória.",
         }),
-        z.null(),
-      ])
-      .refine((val) => val !== null, {
-        message: "Data é obrigatória.",
-      }),
+      ]),
+    ),
     message: z.string().min(1, { message: "Mensagem é obrigatória." }),
   }),
 );
 
-const onFormSubmit = ({ valid }: FormSubmitEvent) => {
+const onFormSubmit = ({ valid, values }: FormSubmitEvent) => {
   if (valid) {
     toast.add({
       severity: "success",
-      summary: "Form is submitted.",
+      summary: "Formulário enviado com sucesso!",
       life: 3000,
     });
 
-    console.log(initialValues);
+    const { coupleName, date, message } = values as FormData;
+
+    const dateFormatted = date?.toISOString();
+
+    return {
+      coupleName,
+      date: dateFormatted,
+      message,
+    };
   }
 };
 </script>
