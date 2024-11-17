@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full bg-slate-100">
+  <div class="h-screen overflow-auto w-full bg-slate-100">
     <Header
       @home="router.push('/')"
       @login="router.push('/sign-in')"

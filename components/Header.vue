@@ -43,7 +43,7 @@
       <SignedIn>
         <div class="flex items-center gap-4">
           <Button
-            label="Dashboard"
+            :label="isMobile ? '' : 'Dashboard'"
             severity="secondary"
             icon="pi pi-home"
             raised
@@ -51,7 +51,7 @@
           />
 
           <Button
-            label="Criar site"
+            :label="isMobile ? '' : 'Criar site'"
             icon="pi pi-plus"
             raised
             @click="emit('new')"
@@ -65,6 +65,11 @@
 </template>
 
 <script setup lang="ts">
+import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+
+const { smallerOrEqual } = useBreakpoints(breakpointsTailwind);
+const isMobile = smallerOrEqual("md");
+
 const emit = defineEmits<{
   (e: "home"): void;
   (e: "login"): void;

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col items-center px-5 font-Sans">
+  <div class="flex h-[calc(100vh-80px)] w-full flex-col items-center px-5 font-Sans">
     <Card class="mt-10 w-full max-w-4xl">
       <template #title>
         <span class="text-2xl font-semibold leading-none" v-if="user?.firstName"

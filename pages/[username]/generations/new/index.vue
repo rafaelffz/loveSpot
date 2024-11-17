@@ -1,5 +1,7 @@
 <template>
-  <div class="flex w-full flex-col items-center px-5 font-Sans">
+  <div
+    class="flex h-full w-full flex-col items-center px-5 font-Sans"
+  >
     <Toast />
 
     <Card class="mt-10 w-full max-w-4xl">
@@ -11,8 +13,8 @@
 
       <template #footer>
         <span class="text-xl font-semibold leading-none text-slate-500"
-          >Preencha os campos abaixo e depois clique em "Gerar site", o resto é
-          com a gente! 😉</span
+          >Preencha os campos abaixo e depois clique em "Gerar", o resto é com a
+          gente! 😉</span
         >
       </template>
     </Card>
@@ -24,7 +26,10 @@
       @submit="onFormSubmit"
       class="mt-12 flex w-full max-w-4xl flex-col gap-10"
     >
-      <div class="grid grid-cols-3 gap-4">
+      <div
+        class="grid gap-4"
+        :class="[isMobile ? 'grid-cols-1' : 'grid-cols-3']"
+      >
         <FormField
           v-slot="$field"
           name="coupleName"
@@ -132,16 +137,18 @@
         >
       </FormField>
 
-      <div class="mt-12 flex items-center justify-end gap-2">
-        <span class="text-slate-700"
+      <div class="my-12 flex items-center justify-end gap-2">
+        <span
+          class="text-slate-700"
+          :class="[isMobile ? 'text-sm' : 'text-base']"
           >Clique aqui quando estiver tudo certo
           <Icon
             name="material-symbols:arrow-right-alt-rounded"
-            size="24"
+            :size="isMobile ? 18 : 24"
             class="align-bottom text-slate-800"
           />
         </span>
-        <Button type="submit" label="Gerar site" raised />
+        <Button type="submit" label="Gerar" raised />
       </div>
     </Form>
   </div>
@@ -152,6 +159,10 @@ import type { FormSubmitEvent } from "@primevue/forms";
 import { FormField } from "@primevue/forms";
 import { zodResolver } from "@primevue/forms/resolvers/zod";
 import { z } from "zod";
+import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+
+const { smallerOrEqual } = useBreakpoints(breakpointsTailwind);
+const isMobile = smallerOrEqual("md");
 
 definePageMeta({
   layout: "dashboard",
