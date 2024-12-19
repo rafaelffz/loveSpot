@@ -1,7 +1,5 @@
 <template>
   <div class="flex h-full w-full flex-col items-center px-5 font-Sans">
-    <Toast />
-
     <Card class="mt-10 w-full max-w-4xl">
       <template #title>
         <span class="text-2xl font-semibold leading-none"
@@ -149,7 +147,13 @@
             class="align-bottom text-slate-800"
           />
         </span>
-        <Button type="submit" :disabled="!enableButton" label="Gerar" raised />
+        <Button
+          type="submit"
+          :disabled="!enableButton"
+          label="Gerar"
+          raised
+          @click="handleCreate"
+        />
       </div>
     </Form>
   </div>
@@ -161,31 +165,37 @@ import { FormField } from "@primevue/forms";
 import { zodResolver } from "@primevue/forms/resolvers/zod";
 import { z } from "zod";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+import { useRouter } from "vue-router";
+import { useUser } from "vue-clerk";
+
+const { user } = useUser();
+
+const router = useRouter();
+
+const { coupleName, date, message, create } = useGenerationCreate();
 
 const { smallerOrEqual } = useBreakpoints(breakpointsTailwind);
 const isMobile = smallerOrEqual("md");
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "clerk:auth",
+  auth: {
+    navigateUnauthenticatedTo: "/sign-in",
+  },
 });
 
 const toast = useToast();
-
-interface FormData {
-  coupleName: string;
-  date: Date | null;
-  message: string;
-}
-
-const coupleName = ref("");
-const date = ref<Date | null>(null);
-const message = ref("");
 
 const initialValues = reactive({
   coupleName: "",
   date: "",
   message: "",
 });
+
+const handleCreate = async () => {
+  await create();
+};
 
 const resolver = zodResolver(
   z.object({
@@ -218,15 +228,12 @@ const onFormSubmit = ({ valid }: FormSubmitEvent) => {
   if (valid) {
     toast.add({
       severity: "success",
-      summary: "Formulário enviado com sucesso!",
-      life: 3000,
+      summary: `Site gerado com sucesso!
+      Enviamos os detalhes para o seu e-mail.`,
+      life: 5000,
     });
 
-    return {
-      coupleName,
-      date: new Date(),
-      message,
-    };
+    router.push(`/dashboard/${user.value?.username}`);
   }
 };
 

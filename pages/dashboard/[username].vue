@@ -1,6 +1,6 @@
 <template>
-  <div class="flex h-[calc(100vh-80px)] w-full flex-col items-center px-5 font-Sans">
-    <Card class="mt-10 w-full max-w-4xl">
+  <div class="flex h-[calc(100vh-80px)] w-full flex-col items-center font-Sans">
+    <Card class="mt-10 w-full max-w-3xl">
       <template #title>
         <span class="text-2xl font-semibold leading-none" v-if="user?.firstName"
           >Bem-vindo, {{ user?.firstName }}!</span
@@ -8,14 +8,16 @@
       </template>
 
       <template #content>
-        <span class="text-2xl font-semibold leading-none text-slate-500" v-if="user?.firstName"
+        <span
+          class="text-2xl font-semibold leading-none text-slate-500"
+          v-if="user?.firstName"
           >Os sites que você gerar irão aparecer nesta tela.</span
         >
       </template>
     </Card>
 
-    <div v-if="loading" class="mt-10 flex w-full max-w-4xl flex-col gap-4">
-      <Skeleton v-for="n in 4" :key="n" height="80px" />
+    <div v-if="loading" class="mt-10 flex w-full max-w-3xl flex-col gap-4">
+      <Skeleton v-for="n in 5" :key="n" height="70px" />
     </div>
 
     <div
@@ -36,6 +38,28 @@
         </template>
       </Card>
     </div>
+
+    <div
+      v-if="!isEmpty && !loading"
+      class="flex w-full max-w-3xl flex-col py-16"
+    >
+      <p class="mb-3 text-base text-gray-700">
+        <span class="text-lg font-semibold text-gray-800">{{
+          generations.length
+        }}</span>
+        <span v-if="generations.length === 1"> geração encontrada.</span>
+        <span v-else> gerações encontradas.</span>
+      </p>
+
+      <div class="flex flex-col gap-5">
+        <Generation
+          v-for="generation in generations"
+          :couple-name="generation.coupleName"
+          :created-at="generation.createdAt"
+          :message="generation.message"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -47,6 +71,9 @@ const { loading, generations, isEmpty } = useGenerations();
 
 definePageMeta({
   layout: "dashboard",
-  middleware: ["auth"],
+  middleware: "clerk:auth",
+  auth: {
+    navigateUnauthenticatedTo: "/sign-in",
+  },
 });
 </script>

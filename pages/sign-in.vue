@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import { neobrutalism } from "@clerk/themes";
-import { useUser } from "vue-clerk";
 
 definePageMeta({
   layout: "auth",

@@ -38,9 +38,15 @@ importers:
       '@primevue/themes':
         specifier: ^4.2.2
         version: 4.2.2
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       drizzle-orm:
         specifier: ^0.36.3
         version: 0.36.3(@libsql/client@0.14.0)(react@18.3.1)
+      nodemailer:
+        specifier: ^6.9.16
+        version: 6.9.16
       nuxt:
         specifier: ^3.14.159
         version: 3.14.159(@libsql/client@0.14.0)(@parcel/watcher@2.5.0)(@types/node@22.9.0)(drizzle-orm@0.36.3(@libsql/client@0.14.0)(react@18.3.1))(eslint@9.14.0(jiti@2.4.0))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.26.0)(terser@5.36.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0)(terser@5.36.0))(vue-tsc@2.1.10(typescript@5.6.3))
@@ -57,8 +63,8 @@ importers:
         specifier: latest
         version: 3.5.12(typescript@5.6.3)
       vue-clerk:
-        specifier: ^0.8.5
-        version: 0.8.5(@clerk/backend@1.16.4(react@18.3.1))(react@18.3.1)(vue@3.5.12(typescript@5.6.3))
+        specifier: ^0.9.9
+        version: 0.9.9(@clerk/backend@1.16.4(react@18.3.1))(react@18.3.1)(vue@3.5.12(typescript@5.6.3))
       vue-router:
         specifier: latest
         version: 4.4.5(vue@3.5.12(typescript@5.6.3))
@@ -294,12 +300,28 @@ packages:
       react-dom:
         optional: true
 
+  '@clerk/shared@2.20.4':
+    resolution: {integrity: sha512-1ndGEO+NejIMFkl47DCeSpVv3nmKh9BHD6wt2Sl3X1wv7sj3eWzSVC14Exkag7D8Og2VcN4LXOFLErsCXHS+YQ==}
+    engines: {node: '>=18.17.0'}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   '@clerk/themes@2.1.45':
     resolution: {integrity: sha512-o8hb8ttQVdoTuAEpAGWDwbCzTvcJJNTAWI8wbJULvvy6FB0WhU62o0t0DX0VKGXe+nRs+qDmQ3bz1d5lahr2Xw==}
     engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.34.0':
     resolution: {integrity: sha512-4ghDvf80/sFlpx5HnmIl3vW7SOqEaTDwyKAw64H/E2ahgGUMk+qLVpxnBumTpowq+bGjfMVwbneDQOhtmYidoQ==}
+    engines: {node: '>=18.17.0'}
+
+  '@clerk/types@4.40.0':
+    resolution: {integrity: sha512-9QdllXYujsjYLbvPg9Kq1rWOemX5FB0r6Ijy8HOxwjKN+TPlxUnGcs+t7IwU+M5gdmZ2KV6aA6d1a2q2FlSoiA==}
     engines: {node: '>=18.17.0'}
 
   '@cloudflare/kv-asset-handler@0.3.4':
@@ -2212,6 +2234,9 @@ packages:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
 
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+
   db0@0.2.1:
     resolution: {integrity: sha512-BWSFmLaCkfyqbSEZBQINMVNjCVfrogi7GQ2RSy1tmtfK9OXlsup6lUMwLsqSD7FbAjD04eWFdXowSHHUp6SE/Q==}
     peerDependencies:
@@ -3550,6 +3575,10 @@ packages:
 
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
+
+  nodemailer@6.9.16:
+    resolution: {integrity: sha512-psAuZdTIRN08HKVd/E8ObdV6NO7NTBY3KsC30F7M4H1OnmLCUNaS56FpYxyb26zWLSyYF9Ozch9KYHhHegsiOQ==}
+    engines: {node: '>=6.0.0'}
 
   nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
@@ -4907,8 +4936,8 @@ packages:
   vue-bundle-renderer@2.1.1:
     resolution: {integrity: sha512-+qALLI5cQncuetYOXp4yScwYvqh8c6SMXee3B+M7oTZxOgtESP0l4j/fXdEJoZ+EdMxkGWIj+aSEyjXkOdmd7g==}
 
-  vue-clerk@0.8.5:
-    resolution: {integrity: sha512-pY+bizno4b8X0qdG3ptCt1wWlQ8FxZl1csdWWqdVXGGc/BlwutQOgDTveCKwceWRZ7YpYIV5Zig/oDYsH1Fflg==}
+  vue-clerk@0.9.9:
+    resolution: {integrity: sha512-Y/9m0A8CpQYt6T1NYDlC6Q273hxe5olzWxX/GOCED9grdUUY4p0pySvjiDGhdxyC6M3f3ULNbd19ewABtRi4/Q==}
     peerDependencies:
       '@clerk/backend': ^1.9.0
       vue: ^3.2.0
@@ -5305,12 +5334,27 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
+  '@clerk/shared@2.20.4(react@18.3.1)':
+    dependencies:
+      '@clerk/types': 4.40.0
+      dequal: 2.0.3
+      glob-to-regexp: 0.4.1
+      js-cookie: 3.0.5
+      std-env: 3.8.0
+      swr: 2.2.5(react@18.3.1)
+    optionalDependencies:
+      react: 18.3.1
+
   '@clerk/themes@2.1.45':
     dependencies:
       '@clerk/types': 4.34.0
       tslib: 2.4.1
 
   '@clerk/types@4.34.0':
+    dependencies:
+      csstype: 3.1.1
+
+  '@clerk/types@4.40.0':
     dependencies:
       csstype: 3.1.1
 
@@ -7367,6 +7411,8 @@ snapshots:
 
   data-uri-to-buffer@4.0.1: {}
 
+  dayjs@1.11.13: {}
+
   db0@0.2.1(@libsql/client@0.14.0)(drizzle-orm@0.36.3(@libsql/client@0.14.0)(react@18.3.1)):
     optionalDependencies:
       '@libsql/client': 0.14.0
@@ -8804,6 +8850,8 @@ snapshots:
   node-gyp-build@4.8.3: {}
 
   node-releases@2.0.18: {}
+
+  nodemailer@6.9.16: {}
 
   nopt@5.0.0:
     dependencies:
@@ -10260,10 +10308,10 @@ snapshots:
     dependencies:
       ufo: 1.5.4
 
-  vue-clerk@0.8.5(@clerk/backend@1.16.4(react@18.3.1))(react@18.3.1)(vue@3.5.12(typescript@5.6.3)):
+  vue-clerk@0.9.9(@clerk/backend@1.16.4(react@18.3.1))(react@18.3.1)(vue@3.5.12(typescript@5.6.3)):
     dependencies:
-      '@clerk/shared': 2.14.0(react@18.3.1)
-      '@clerk/types': 4.34.0
+      '@clerk/shared': 2.20.4(react@18.3.1)
+      '@clerk/types': 4.40.0
       vue: 3.5.12(typescript@5.6.3)
     optionalDependencies:
       '@clerk/backend': 1.16.4(react@18.3.1)

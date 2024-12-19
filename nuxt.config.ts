@@ -33,6 +33,9 @@ export default defineNuxtConfig({
 
   primevue: {
     importTheme: { from: "./assets/css/preset.ts" },
+    directives: {
+      include: ["Tooltip"],
+    },
     options: {
       locale: {
         accept: "Sim",

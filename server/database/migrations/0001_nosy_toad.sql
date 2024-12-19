@@ -1,0 +1,1 @@
+ALTER TABLE `generations` ALTER COLUMN "date" TO "date" text NOT NULL;
