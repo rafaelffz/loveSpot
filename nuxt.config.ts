@@ -29,6 +29,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     tursoDBURL: process.env.TURSO_DATABASE_URL,
     tursoAuthToken: process.env.TURSO_AUTH_TOKEN,
+    mailHost: process.env.MAIL_HOST,
+    mailPort: process.env.MAIL_PORT,
+    mailUser: process.env.MAIL_USER,
+    mailPass: process.env.MAIL_PASS,
   },
 
   primevue: {

@@ -150,9 +150,9 @@
         <Button
           type="submit"
           :disabled="!enableButton"
+          :loading="loading"
           label="Gerar"
           raised
-          @click="handleCreate"
         />
       </div>
     </Form>
@@ -166,13 +166,10 @@ import { zodResolver } from "@primevue/forms/resolvers/zod";
 import { z } from "zod";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 import { useRouter } from "vue-router";
-import { useUser } from "vue-clerk";
-
-const { user } = useUser();
 
 const router = useRouter();
 
-const { coupleName, date, message, create } = useGenerationCreate();
+const { coupleName, date, message, loading, create } = useGenerationCreate();
 
 const { smallerOrEqual } = useBreakpoints(breakpointsTailwind);
 const isMobile = smallerOrEqual("md");
@@ -195,6 +192,13 @@ const initialValues = reactive({
 
 const handleCreate = async () => {
   await create();
+  toast.add({
+    severity: "success",
+    summary: `Site gerado com sucesso!
+      Enviamos os detalhes para o seu e-mail.`,
+    life: 5000,
+  });
+  router.push("/dashboard");
 };
 
 const resolver = zodResolver(
@@ -226,14 +230,7 @@ const resolver = zodResolver(
 
 const onFormSubmit = ({ valid }: FormSubmitEvent) => {
   if (valid) {
-    toast.add({
-      severity: "success",
-      summary: `Site gerado com sucesso!
-      Enviamos os detalhes para o seu e-mail.`,
-      life: 5000,
-    });
-
-    router.push(`/dashboard/${user.value?.username}`);
+    handleCreate();
   }
 };
 
