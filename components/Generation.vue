@@ -24,6 +24,7 @@
         />
         <Button
           label="Exibir QR Code"
+          @click="emit('show-qr-code')"
           icon="pi pi-qrcode"
           icon-pos="right"
           class="w-full"
@@ -41,6 +42,10 @@ const props = defineProps<{
   createdAt: string;
   message: string;
 }>();
+
+const emit = defineEmits<{
+  (e: "show-qr-code"): void;
+}>()
 
 const date = computed(() => dayjs(props.createdAt).format("DD/MM/YYYY"));
 </script>

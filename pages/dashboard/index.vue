@@ -1,5 +1,7 @@
 <template>
-  <div class="flex h-[calc(100vh-80px)] w-full flex-col items-center px-5 font-Sans">
+  <div
+    class="flex h-[calc(100vh-80px)] w-full flex-col items-center px-5 font-Sans"
+  >
     <Card class="mt-10 w-full max-w-3xl">
       <template #title>
         <span class="text-2xl font-semibold leading-none" v-if="user?.firstName"
@@ -57,14 +59,28 @@
           :couple-name="generation.coupleName"
           :created-at="generation.createdAt"
           :message="generation.message"
+          @show-qr-code="dialog = true"
         />
       </div>
+
+      <QrCodeDialog :qrcode="qrcode" v-model:dialog="dialog" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useUser } from "vue-clerk";
+import { ref } from "vue";
+import { useQRCode } from "@vueuse/integrations/useQRCode";
+
+const dialog = ref<boolean>(false);
+
+const qrcode = useQRCode(`localhost:3000/dashboard`, {
+  errorCorrectionLevel: "M",
+  margin: 2,
+  scale: 7,
+});
+
 const { user } = useUser();
 
 const { loading, generations, isEmpty } = useGenerations();

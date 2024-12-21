@@ -2,13 +2,19 @@ import nodemailer from "nodemailer";
 
 const { mailHost, mailPort, mailUser, mailPass } = useRuntimeConfig();
 
+interface Mail {
+  to: string;
+  subject: string;
+  html: string;
+}
+
 const transporter = nodemailer.createTransport({
   host: mailHost,
   port: Number(mailPort),
   auth: { user: mailUser, pass: mailPass },
 });
 
-export const sendEmail = async (options: any) => {
+export const sendEmail = async (options: Mail) => {
   const defaultSender = { name: "Equipe LoveSpot", email: mailUser };
 
   const mailOptions = {
