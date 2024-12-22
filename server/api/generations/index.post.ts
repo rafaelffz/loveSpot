@@ -55,4 +55,6 @@ export default defineEventHandler(async (event) => {
       <a href="http://localhost:3000/dashboard">Acessar painel</a>
     `,
   });
+
+  setResponseStatus(event, 201);
 });

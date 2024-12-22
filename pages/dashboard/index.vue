@@ -56,10 +56,13 @@
       <div class="flex flex-col gap-5">
         <Generation
           v-for="generation in generations"
+          :key="generation.id"
+          :id="generation.id"
           :couple-name="generation.coupleName"
           :created-at="generation.createdAt"
           :message="generation.message"
           @show-qr-code="dialog = true"
+          @delete-generation="handleDeleteGeneration"
         />
       </div>
 
@@ -73,18 +76,6 @@ import { useUser } from "vue-clerk";
 import { ref } from "vue";
 import { useQRCode } from "@vueuse/integrations/useQRCode";
 
-const dialog = ref<boolean>(false);
-
-const qrcode = useQRCode(`localhost:3000/dashboard`, {
-  errorCorrectionLevel: "M",
-  margin: 2,
-  scale: 7,
-});
-
-const { user } = useUser();
-
-const { loading, generations, isEmpty } = useGenerations();
-
 definePageMeta({
   layout: "dashboard",
   middleware: "clerk:auth",
@@ -92,4 +83,22 @@ definePageMeta({
     navigateUnauthenticatedTo: "/sign-in",
   },
 });
+
+const { user } = useUser();
+
+const { loading, generations, isEmpty, refetch } = useGenerations();
+const { loading: loadingDelete, remove } = useGenerationDelete();
+
+const dialog = ref<boolean>(false);
+
+const qrcode = useQRCode("localhost:3000/dashboard", {
+  errorCorrectionLevel: "M",
+  margin: 2,
+  scale: 7,
+});
+
+const handleDeleteGeneration = async (id: string) => {
+  await remove(id)
+  await refetch()
+};
 </script>
