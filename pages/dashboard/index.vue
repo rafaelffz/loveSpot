@@ -53,7 +53,7 @@
         <span v-else> gerações encontradas.</span>
       </p>
 
-      <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-5" v-auto-animate>
         <Generation
           v-for="generation in generations"
           :key="generation.id"

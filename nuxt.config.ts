@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "vue-clerk/nuxt",
     "@vueuse/nuxt",
+    '@formkit/auto-animate/nuxt'
   ],
 
   typescript: {
