@@ -61,12 +61,13 @@
           :couple-name="generation.coupleName"
           :created-at="generation.createdAt"
           :message="generation.message"
-          @show-qr-code="dialog = true"
+          @show-qr-code="handleQrCode"
+          @open-site="handleOpenSite"
           @delete-generation="handleDeleteGeneration"
         />
       </div>
 
-      <QrCodeDialog :qrcode="qrcode" v-model:dialog="dialog" />
+      <QrCodeDialog :qrcode="qrcode.value" v-model:dialog="dialog" />
     </div>
   </div>
 </template>
@@ -84,21 +85,36 @@ definePageMeta({
   },
 });
 
+const config = useRuntimeConfig()
+
 const { user } = useUser();
 
 const { loading, generations, isEmpty, refetch } = useGenerations();
-const { loading: loadingDelete, remove } = useGenerationDelete();
+const { remove } = useGenerationDelete();
 
 const dialog = ref<boolean>(false);
 
-const qrcode = useQRCode("localhost:3000/dashboard", {
-  errorCorrectionLevel: "M",
-  margin: 2,
-  scale: 7,
-});
+const qrcodeValue = ref("");
+
+const qrcode = computed(() =>
+  useQRCode(qrcodeValue.value, {
+    errorCorrectionLevel: "M",
+    margin: 2,
+    scale: 7,
+  }),
+);
 
 const handleDeleteGeneration = async (id: string) => {
-  await remove(id)
-  await refetch()
+  await remove(id);
+  await refetch();
+};
+
+const handleQrCode = (id: string) => {
+  dialog.value = true;
+  qrcodeValue.value = `${config.public.url}/${id}`;
+};
+
+const handleOpenSite = (id: string) => {
+  window.open(`${config.public.url}/${id}`, "_blank");
 };
 </script>

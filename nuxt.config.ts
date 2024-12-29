@@ -33,6 +33,10 @@ export default defineNuxtConfig({
     mailPort: process.env.MAIL_PORT,
     mailUser: process.env.MAIL_USER,
     mailPass: process.env.MAIL_PASS,
+
+    public: {
+      url: process.env.PUBLIC_URL
+    }
   },
 
   primevue: {

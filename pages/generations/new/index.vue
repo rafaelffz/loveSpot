@@ -196,7 +196,7 @@ const handleCreate = async () => {
     severity: "success",
     summary: `Site gerado com sucesso!
       Enviamos os detalhes para o seu e-mail.`,
-    life: 5000,
+    life: 8000,
   });
   router.push("/dashboard");
 };

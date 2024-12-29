@@ -37,6 +37,7 @@
       <div class="mt-1 flex gap-4">
         <Button
           label="Visitar site"
+          @click="emit('open-site', props.id)"
           icon="pi pi-external-link"
           icon-pos="right"
           severity="secondary"
@@ -45,7 +46,7 @@
         />
         <Button
           label="Exibir QR Code"
-          @click="emit('show-qr-code')"
+          @click="emit('show-qr-code', props.id)"
           icon="pi pi-qrcode"
           icon-pos="right"
           class="w-full"
@@ -69,15 +70,14 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "show-qr-code"): void;
+  (e: "show-qr-code", id: string): void;
   (e: "delete-generation", id: string): void;
+  (e: "open-site", id: string): void;
 }>();
 
 const date = computed(() => dayjs(props.createdAt).format("DD/MM/YYYY"));
 
 const toggleConfirmDelete = (item: any) => {
-  console.log(item)
-
   confirm.require({
     message: "Você tem certeza que deseja deletar essa geração?",
     header: "Atenção!",
@@ -93,7 +93,7 @@ const toggleConfirmDelete = (item: any) => {
       severity: "danger",
     },
     accept: () => {
-      emit('delete-generation', props.id)
+      emit("delete-generation", props.id);
       toast.add({
         severity: "success",
         summary: "Deletada",

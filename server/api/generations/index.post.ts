@@ -39,17 +39,17 @@ export default defineEventHandler(async (event) => {
     to: userEmail,
     subject: "Geração criada!",
     html: `
-      <h2 style="color: black;"> ${firstName}, sua geração foi criada com sucesso!</h2>
+      <h2 style="color: black; font-weight: 500;"> ${firstName}, sua geração foi criada com sucesso!</h2>
 
-      <span>
-        <span style="color: black; font-weight: 500; font-size: 16px;">Nome do casal:</span>
-        <span style="color: black; font-size: 14px;">${body.coupleName}</span>
-      </span>
+      <div>
+        <span style="color: black; font-weight: 600; font-size: 16px;">Nome do casal:</span>
+        <span style="color: black; font-size: 16px;">${body.coupleName}</span>
+      </div>
 
-      <span>
-        <span style="color: black; font-weight: 500; font-size: 16px;">Data de criação:</span> 
-        <span style="color: black; font-size: 14px;">${dayjs().format("DD/MM/YYYY")}</span>
-      </span>
+      <div>
+        <span style="color: black; font-weight: 600; font-size: 16px;">Data de criação:</span> 
+        <span style="color: black; font-size: 16px;">${dayjs().format("DD/MM/YYYY")}</span>
+      </div>
 
       <p>Você pode visualizar os detalhes da sua geração no painel do nosso site, basta acessar o link abaixo:</p>
       <a href="http://localhost:3000/dashboard">Acessar painel</a>
