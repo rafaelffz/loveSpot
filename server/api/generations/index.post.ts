@@ -3,6 +3,8 @@ import { generations } from "~/server/database/schema";
 import { clerkClient, getAuth } from "vue-clerk/server";
 import dayjs from "dayjs";
 
+const config = useRuntimeConfig()
+
 interface BodyRequest {
   coupleName: string;
   date: string;
@@ -52,7 +54,7 @@ export default defineEventHandler(async (event) => {
       </div>
 
       <p>Você pode visualizar os detalhes da sua geração no painel do nosso site, basta acessar o link abaixo:</p>
-      <a href="http://localhost:3000/dashboard">Acessar painel</a>
+      <a href="${config.public.url}/dashboard">Acessar painel</a>
     `,
   });
 

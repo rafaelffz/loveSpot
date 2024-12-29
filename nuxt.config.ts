@@ -35,7 +35,7 @@ export default defineNuxtConfig({
     mailPass: process.env.MAIL_PASS,
 
     public: {
-      url: process.env.PUBLIC_URL
+      url: process.env.BASE_URL
     }
   },
 
