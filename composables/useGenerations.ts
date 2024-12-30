@@ -20,8 +20,8 @@ export const useGenerations = () => {
     }
   };
 
-  onMounted(() => {
-    fetchGenerations();
+  onMounted(async () => {
+    await fetchGenerations();
   });
 
   return {

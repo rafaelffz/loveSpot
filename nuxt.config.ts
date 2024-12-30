@@ -20,6 +20,8 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "vue-clerk/nuxt",
     "@vueuse/nuxt",
+    "@formkit/auto-animate/nuxt",
+    "@vueuse/motion/nuxt",
   ],
 
   typescript: {
@@ -35,8 +37,8 @@ export default defineNuxtConfig({
     mailPass: process.env.MAIL_PASS,
 
     public: {
-      url: process.env.PUBLIC_URL
-    }
+      url: process.env.BASE_URL,
+    },
   },
 
   primevue: {

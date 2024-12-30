@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card v-motion-slide-visible-bottom>
     <template #title>
       <div class="flex items-center justify-between leading-none">
         {{ props.coupleName }}
