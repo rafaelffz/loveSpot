@@ -4,15 +4,15 @@
   >
     <Card class="mt-10 w-full max-w-3xl">
       <template #title>
-        <span class="text-2xl font-semibold leading-none" v-if="user?.firstName"
+        <span v-if="user?.firstName" class="text-2xl font-semibold leading-none"
           >Bem-vindo, {{ user?.firstName }}!</span
         >
       </template>
 
       <template #content>
         <span
-          class="text-2xl font-semibold leading-none text-slate-500"
           v-if="user?.firstName"
+          class="text-2xl font-semibold leading-none text-slate-500"
           >Os sites que você gerar irão aparecer nesta tela.</span
         >
       </template>
@@ -53,11 +53,11 @@
         <span v-else> gerações encontradas.</span>
       </p>
 
-      <div class="flex flex-col gap-5">
+      <div v-auto-animate class="flex flex-col gap-5">
         <Generation
           v-for="generation in generations"
-          :key="generation.id"
           :id="generation.id"
+          :key="generation.id"
           :couple-name="generation.coupleName"
           :created-at="generation.createdAt"
           :message="generation.message"
@@ -67,14 +67,13 @@
         />
       </div>
 
-      <QrCodeDialog :qrcode="qrcode.value" v-model:dialog="dialog" />
+      <QrCodeDialog v-model:dialog="dialog" :qrcode="qrcode.value" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useUser } from "vue-clerk";
-import { ref } from "vue";
 import { useQRCode } from "@vueuse/integrations/useQRCode";
 
 definePageMeta({
@@ -85,7 +84,7 @@ definePageMeta({
   },
 });
 
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
 
 const { user } = useUser();
 
